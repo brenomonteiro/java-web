@@ -44,4 +44,41 @@ public class CidadeController {
     }
 
 
+    @GetMapping("/preparaAlterar")
+    public String preparaAlterar(
+            @RequestParam String nome,
+            @RequestParam String estado,
+            Model memoria
+    ) {
+        var cidadeAtual = cidades
+                .stream()
+                .filter(cidade ->
+                        cidade.getNome().equals(nome) &&
+                                cidade.getEstado().equals(estado))
+                .findAny();
+
+        if (cidadeAtual.isPresent()) {
+            memoria.addAttribute("cidadeAtual", cidadeAtual.get());
+            memoria.addAttribute("listaCidades", cidades);
+        }
+        return "/crud";
+    }
+
+    @PostMapping("/alterar")
+    public String alterar(
+            @RequestParam String nomeAtual,
+            @RequestParam String estadoAtual,
+            Cidade cidade
+    ) {
+
+        cidades.removeIf(cidadeAtual->
+                cidadeAtual.getNome().equals(nomeAtual) &&
+                cidadeAtual.getEstado().equals(estadoAtual));
+
+        criar(cidade);
+
+        return "redirect:/";
+    }
+
+
 }
