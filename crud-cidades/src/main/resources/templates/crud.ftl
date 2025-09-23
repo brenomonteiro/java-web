@@ -14,14 +14,14 @@
 
     </div>
 
-<form>
+<form action="/criar" method="POST">
     <div class="form-group">
         <label for="nome">Cidade:</label>
-        <input type="text" class="form-control" placeholder="Informe o nome da cidade" id="nome">
+        <input name="nome" type="text" class="form-control" placeholder="Informe o nome da cidade" id="nome">
     </div>
     <div class="form-group">
         <label for="estado">Estado:</label>
-        <input type="text" class="form-control" placeholder="Informe o estado ao qual a cidade pertence" id="estado">
+        <input name="estado" type="text" class="form-control" placeholder="Informe o estado ao qual a cidade pertence" id="estado">
     </div>
     <button type="submit" class="btn btn-primary">CRIAR</button>
 </form>
